@@ -225,9 +225,10 @@
             transition: width 0.6s ease;
         }
 
-        .bar-fill.bash { width: 81%; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-        .bar-fill.python { width: 65%; background: linear-gradient(90deg, #3776ab, #ffd43b); }
-        .bar-fill.js { width: 61%; background: linear-gradient(90deg, #f7df1e, #323330); }
+        .bar-fill.bash { width: 95%; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+        .bar-fill.python { width: 85%; background: linear-gradient(90deg, #3776ab, #ffd43b); }
+        .bar-fill.js { width: 45%; background: linear-gradient(90deg, #f7df1e, #323330); }
+        .bar-fill.html { width: 40%; background: linear-gradient(90deg, #e34c26, #f16529); }
 
         .tags {
             display: flex;
@@ -320,6 +321,46 @@
             box-shadow: 0 4px 12px rgba(108, 140, 255, 0.3);
         }
 
+        /* Activity */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .activity-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .activity-card .activity-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-card .activity-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-card .activity-link {
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .activity-card .activity-link:hover { text-decoration: underline; }
+
         .footer {
             text-align: center;
             padding: 2rem 0 1rem;
@@ -366,38 +407,71 @@
                     <h2>Projecten</h2>
                     
                     <div class="project-item">
-                        <div class="project-title">🔧 Automatische Backup Script</div>
+                        <div class="project-title">🐍 pwnagotchi-plugins <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 231</span></div>
                         <div class="project-desc">
-                            Bash-script dat dagelijks backups maakt van belangrijke mappen en automatisch oude backups opruimt.
-                        </div>
-                        <div class="project-tech">
-                            <span>Bash</span>
-                            <span>Cron</span>
-                            <span>Linux</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">🐍 Installatie Automatisering</div>
-                        <div class="project-desc">
-                            Python-script voor het automatisch installeren en configureren van software op nieuwe machines.
+                            Python plugins voor pwnagotchi — handige uitbreidingen voor de pwnagotchi AI.
                         </div>
                         <div class="project-tech">
                             <span>Python</span>
-                            <span>Shell</span>
-                            <span>SSH</span>
+                            <span>Pwnagotchi</span>
                         </div>
                     </div>
 
                     <div class="project-item">
-                        <div class="project-title">📊 Dashboard voor Technische Monitoring</div>
+                        <div class="project-title">🔊 pwnspeaker <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 20</span></div>
                         <div class="project-desc">
-                            Webapplicatie voor het monitoren van technische systemen en processen in real-time.
+                            Python plugin voor pwnagotchi die tekst-naar-spraak gebruikt om te spreken.
                         </div>
                         <div class="project-tech">
-                            <span>JavaScript</span>
-                            <span>TypeScript</span>
-                            <span>HTML/CSS</span>
+                            <span>Python</span>
+                            <span>TTS</span>
+                            <span>Pwnagotchi</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">🎮 pwnagotchi-control-center <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 12</span></div>
+                        <div class="project-desc">
+                            (Remote) control center voor pwnagotchi — flashen, configureren en beheren.
+                        </div>
+                        <div class="project-tech">
+                            <span>Shell</span>
+                            <span>Raspberry Pi</span>
+                            <span>Bluetooth</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">📦 RetroPie-Bios-Files <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 8</span></div>
+                        <div class="project-desc">
+                            Download en extract BIOS-files voor RetroPie in de juiste directories.
+                        </div>
+                        <div class="project-tech">
+                            <span>Shell</span>
+                            <span>RetroPie</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">🔔 apprise-notify <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 3</span></div>
+                        <div class="project-desc">
+                            Plugin voor pwnagotchi die Apprise gebruikt om notificaties te sturen.
+                        </div>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Apprise</span>
+                            <span>Pwnagotchi</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">🗂️ pwnsorter <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 2</span></div>
+                        <div class="project-desc">
+                            Python plugin voor pwnagotchi om gekraakte access points en wachtwoorden te sorteren.
+                        </div>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Pwnagotchi</span>
                         </div>
                     </div>
                 </section>
@@ -450,6 +524,32 @@
                         <div class="period">2005 — 2010</div>
                     </div>
                 </section>
+
+                <section class="card">
+                    <h2>Live Activity</h2>
+                    <div class="activity-grid">
+                        <a href="https://github.com/itsdarklikehell" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
+                            <div class="activity-icon">🐙</div>
+                            <div class="activity-name">GitHub</div>
+                            <div class="activity-link">itsdarklikehell</div>
+                        </a>
+                        <a href="https://tryhackme.com/p/SgtStroopwafel" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
+                            <div class="activity-icon">🔒</div>
+                            <div class="activity-name">TryHackMe</div>
+                            <div class="activity-link">SgtStroopwafel</div>
+                        </a>
+                        <a href="https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
+                            <div class="activity-icon">📦</div>
+                            <div class="activity-name">Hack The Box</div>
+                            <div class="activity-link">SgtStroopwafel</div>
+                        </a>
+                        <a href="https://learn.cylabacademy.org/users/SgtStroopwafel" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
+                            <div class="activity-icon">🎓</div>
+                            <div class="activity-name">CyLab Academy</div>
+                            <div class="activity-link">SgtStroopwafel</div>
+                        </a>
+                    </div>
+                </section>
             </div>
 
             <aside class="sidebar">
@@ -478,23 +578,30 @@
                     <div class="skill-bar">
                         <div class="skill-header">
                             <span>Shell/Bash Scripting</span>
-                            <span>81%</span>
+                            <span>95%</span>
                         </div>
                         <div class="bar"><div class="bar-fill bash"></div></div>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-header">
                             <span>Python</span>
-                            <span>65%</span>
+                            <span>85%</span>
                         </div>
                         <div class="bar"><div class="bar-fill python"></div></div>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-header">
                             <span>JavaScript/TypeScript</span>
-                            <span>61%</span>
+                            <span>45%</span>
                         </div>
                         <div class="bar"><div class="bar-fill js"></div></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-header">
+                            <span>HTML/CSS</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="bar"><div class="bar-fill html"></div></div>
                     </div>
                 </section>
 
@@ -537,4 +644,3 @@
     </script>
 </body>
 </html>
-<!-- build trigger 1790927417 -->
