@@ -68,6 +68,27 @@
             transform: scale(1.05);
         }
 
+        .lang-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 4.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            z-index: 100;
+            transition: all 0.2s;
+        }
+
+        .lang-toggle:hover {
+            background: var(--surface2);
+        }
+
         .header {
             background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
             border: 1px solid var(--border);
@@ -321,7 +342,6 @@
             box-shadow: 0 4px 12px rgba(108, 140, 255, 0.3);
         }
 
-        /* Activity */
         .activity-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -372,18 +392,19 @@
             body { background: #fff; color: #000; }
             .card, .header { border-color: #ddd; background: #fff; }
             .header-avatar { background: #333; }
-            .theme-toggle { display: none; }
+            .theme-toggle, .lang-toggle { display: none; }
         }
     </style>
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle thema">🌙</button>
+    <button class="lang-toggle" onclick="toggleLang()" title="Toggle language">🌐 <span id="lang-label">NL</span></button>
     <div class="container">
         <header class="header">
             <img src="profile.jpg" alt="Bauke Molenaar" class="header-avatar">
             <div class="header-info">
                 <h1>Bauke Molenaar</h1>
-                <p class="tagline">Technisch professional met een passie voor ICT en probleemoplossing</p>
+                <p class="tagline" data-i18n="tagline">Technisch professional met een passie voor ICT en probleemoplossing</p>
             </div>
             <div class="header-contact">
                 <span>📞 <a href="tel:+31636065494">+31 6 3606 5494</a></span>
@@ -394,8 +415,8 @@
         <div class="grid">
             <div class="main-col">
                 <section class="card">
-                    <h2>Over Mij</h2>
-                    <p class="about-text">
+                    <h2 data-i18n="about">Over Mij</h2>
+                    <p class="about-text" data-i18n="about_text">
                         Praktisch ingestelde technisch professional met ruime ervaring in elektrische systemen, 
                         zonnepanelen en tweewielers. Hands-on achtergrond met technische precisie, analytisch 
                         denkvermogen en een scherp oog voor procesverbetering. Zelfstandig Shell/Bash, Python 
@@ -404,11 +425,11 @@
                 </section>
 
                 <section class="card">
-                    <h2>Projecten</h2>
+                    <h2 data-i18n="projects">Projecten</h2>
                     
                     <div class="project-item">
                         <div class="project-title">🐍 pwnagotchi-plugins <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 231</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_pwnagotchi_plugins">
                             Python plugins voor pwnagotchi — handige uitbreidingen voor de pwnagotchi AI.
                         </div>
                         <div class="project-tech">
@@ -419,7 +440,7 @@
 
                     <div class="project-item">
                         <div class="project-title">🔊 pwnspeaker <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 20</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_pwnspeaker">
                             Python plugin voor pwnagotchi die tekst-naar-spraak gebruikt om te spreken.
                         </div>
                         <div class="project-tech">
@@ -431,7 +452,7 @@
 
                     <div class="project-item">
                         <div class="project-title">🎮 pwnagotchi-control-center <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 12</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_pwnagotchi_cc">
                             (Remote) control center voor pwnagotchi — flashen, configureren en beheren.
                         </div>
                         <div class="project-tech">
@@ -443,7 +464,7 @@
 
                     <div class="project-item">
                         <div class="project-title">📦 RetroPie-Bios-Files <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 8</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_retropie_bios">
                             Download en extract BIOS-files voor RetroPie in de juiste directories.
                         </div>
                         <div class="project-tech">
@@ -454,7 +475,7 @@
 
                     <div class="project-item">
                         <div class="project-title">🔔 apprise-notify <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 3</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_apprise">
                             Plugin voor pwnagotchi die Apprise gebruikt om notificaties te sturen.
                         </div>
                         <div class="project-tech">
@@ -466,7 +487,7 @@
 
                     <div class="project-item">
                         <div class="project-title">🗂️ pwnsorter <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 2</span></div>
-                        <div class="project-desc">
+                        <div class="project-desc" data-i18n="proj_pwnsorter">
                             Python plugin voor pwnagotchi om gekraakte access points en wachtwoorden te sorteren.
                         </div>
                         <div class="project-tech">
@@ -477,56 +498,56 @@
                 </section>
 
                 <section class="card">
-                    <h2>Werkervaring</h2>
+                    <h2 data-i18n="experience">Werkervaring</h2>
                     
                     <div class="timeline-item">
-                        <div class="role">Monteur Sterkstroom Installaties & Algemeen Medewerker</div>
+                        <div class="role" data-i18n="exp_strowonen_role">Monteur Sterkstroom Installaties & Algemeen Medewerker</div>
                         <div class="company">Strowonen.nl</div>
-                        <div class="period">2019 — Heden</div>
+                        <div class="period">2019 — <span data-i18n="present">Heden</span></div>
                         <ul>
-                            <li>Montage van elektrische (sterkstroom) installaties en zonnepanelen</li>
-                            <li>Hout, stro en leem-bewerker</li>
+                            <li data-i18n="exp_strowonen_1">Montage van elektrische (sterkstroom) installaties en zonnepanelen</li>
+                            <li data-i18n="exp_strowonen_2">Hout, stro en leem-bewerker</li>
                         </ul>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="role">Monteur Sterkstroom Installaties</div>
+                        <div class="role" data-i18n="exp_prima_role">Monteur Sterkstroom Installaties</div>
                         <div class="company">Uitzendbureau Prima Personeel</div>
                         <div class="period">2015 — 2017</div>
                         <ul>
-                            <li>Montage van elektrische (sterkstroom) installaties en zonnepanelen</li>
+                            <li data-i18n="exp_prima_1">Montage van elektrische (sterkstroom) installaties en zonnepanelen</li>
                         </ul>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="role">Monteur Tweewieler Hersteller</div>
+                        <div class="role" data-i18n="exp_mient_role">Monteur Tweewieler Hersteller</div>
                         <div class="company">Mient de Vries</div>
                         <div class="period">2011 — 2015</div>
                         <ul>
-                            <li>Tweewieler herstel monteur</li>
-                            <li>Algemeen verkoop en magazijn medewerker</li>
+                            <li data-i18n="exp_mient_1">Tweewieler herstel monteur</li>
+                            <li data-i18n="exp_mient_2">Algemeen verkoop en magazijn medewerker</li>
                         </ul>
                     </div>
                 </section>
 
                 <section class="card">
-                    <h2>Opleiding</h2>
+                    <h2 data-i18n="education">Opleiding</h2>
                     
                     <div class="timeline-item">
-                        <div class="role">Tweewielerherstel Monteur</div>
+                        <div class="role" data-i18n="edu_friesche_poort">Tweewielerherstel Monteur</div>
                         <div class="company">Friesche Poort</div>
                         <div class="period">2011 — 2015</div>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="role">Monteur Sterkstroom Installaties</div>
+                        <div class="role" data-i18n="edu_friesland_college">Monteur Sterkstroom Installaties</div>
                         <div class="company">Friesland College</div>
                         <div class="period">2005 — 2010</div>
                     </div>
                 </section>
 
                 <section class="card">
-                    <h2>Live Activity</h2>
+                    <h2 data-i18n="activity">Live Activity</h2>
                     <div class="activity-grid">
                         <a href="https://github.com/itsdarklikehell" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
                             <div class="activity-icon">🐙</div>
@@ -554,30 +575,30 @@
 
             <aside class="sidebar">
                 <section class="card">
-                    <h2>Download CV</h2>
+                    <h2 data-i18n="download">Download CV</h2>
                     <a href="https://canva.link/tmyeeati5zwh0e2" class="download-btn" target="_blank">
-                        📄 Download PDF
+                        📄 <span data-i18n="download_pdf">Download PDF</span>
                     </a>
                 </section>
 
                 <section class="card">
-                    <h2>Expertise</h2>
+                    <h2 data-i18n="expertise">Expertise</h2>
                     <div class="tags">
                         <span class="tag">NEN 1010</span>
-                        <span class="tag">Meterkasten</span>
-                        <span class="tag">Bekabeling</span>
-                        <span class="tag">Multimeter</span>
-                        <span class="tag">Isolatietester</span>
-                        <span class="tag">Zonnepanelen</span>
-                        <span class="tag">Sterkstroom</span>
+                        <span class="tag" data-i18n="exp_meterkasten">Meterkasten</span>
+                        <span class="tag" data-i18n="exp_bekabeling">Bekabeling</span>
+                        <span class="tag" data-i18n="exp_multimeter">Multimeter</span>
+                        <span class="tag" data-i18n="exp_isolatietester">Isolatietester</span>
+                        <span class="tag" data-i18n="exp_zonnepanelen">Zonnepanelen</span>
+                        <span class="tag" data-i18n="exp_sterkstroom">Sterkstroom</span>
                     </div>
                 </section>
 
                 <section class="card">
-                    <h2>Vaardigheden</h2>
+                    <h2 data-i18n="skills">Vaardigheden</h2>
                     <div class="skill-bar">
                         <div class="skill-header">
-                            <span>Shell/Bash Scripting</span>
+                            <span data-i18n="skill_bash">Shell/Bash Scripting</span>
                             <span>95%</span>
                         </div>
                         <div class="bar"><div class="bar-fill bash"></div></div>
@@ -606,29 +627,144 @@
                 </section>
 
                 <section class="card">
-                    <h2>Talen</h2>
+                    <h2 data-i18n="languages">Talen</h2>
                     <div class="lang-item">
-                        <span class="lang-name">Nederlands</span>
-                        <span class="lang-level">Moedertaal</span>
+                        <span class="lang-name" data-i18n="lang_nl">Nederlands</span>
+                        <span class="lang-level" data-i18n="lang_native">Moedertaal</span>
                     </div>
                     <div class="lang-item">
-                        <span class="lang-name">Duits</span>
-                        <span class="lang-level">Basis</span>
+                        <span class="lang-name" data-i18n="lang_de">Duits</span>
+                        <span class="lang-level" data-i18n="lang_basic">Basis</span>
                     </div>
                     <div class="lang-item">
-                        <span class="lang-name">Engels</span>
-                        <span class="lang-level">Basis</span>
+                        <span class="lang-name" data-i18n="lang_en">Engels</span>
+                        <span class="lang-level" data-i18n="lang_basic">Basis</span>
                     </div>
                 </section>
             </aside>
         </div>
 
         <footer class="footer">
-            <p>© 2026 Bauke Molenaar — Gemaakt met ❤️</p>
+            <p data-i18n="footer">© 2026 Bauke Molenaar — Gemaakt met ❤️</p>
         </footer>
     </div>
 
     <script>
+        const translations = {
+            nl: {
+                tagline: "Technisch professional met een passie voor ICT en probleemoplossing",
+                about: "Over Mij",
+                about_text: "Praktisch ingestelde technisch professional met ruime ervaring in elektrische systemen, zonnepanelen en tweewielers. Hands-on achtergrond met technische precisie, analytisch denkvermogen en een scherp oog voor procesverbetering. Zelfstandig Shell/Bash, Python en JavaScript/TypeScript aangeleerd met een sterke drive om te groeien als ICT-professional.",
+                projects: "Projecten",
+                proj_pwnagotchi_plugins: "Python plugins voor pwnagotchi — handige uitbreidingen voor de pwnagotchi AI.",
+                proj_pwnspeaker: "Python plugin voor pwnagotchi die tekst-naar-spraak gebruikt om te spreken.",
+                proj_pwnagotchi_cc: "(Remote) control center voor pwnagotchi — flashen, configureren en beheren.",
+                proj_retropie_bios: "Download en extract BIOS-files voor RetroPie in de juiste directories.",
+                proj_apprise: "Plugin voor pwnagotchi die Apprise gebruikt om notificaties te sturen.",
+                proj_pwnsorter: "Python plugin voor pwnagotchi om gekraakte access points en wachtwoorden te sorteren.",
+                experience: "Werkervaring",
+                exp_strowonen_role: "Monteur Sterkstroom Installaties & Algemeen Medewerker",
+                exp_strowonen_1: "Montage van elektrische (sterkstroom) installaties en zonnepanelen",
+                exp_strowonen_2: "Hout, stro en leem-bewerker",
+                exp_prima_role: "Monteur Sterkstroom Installaties",
+                exp_prima_1: "Montage van elektrische (sterkstroom) installaties en zonnepanelen",
+                exp_mient_role: "Monteur Tweewieler Hersteller",
+                exp_mient_1: "Tweewieler herstel monteur",
+                exp_mient_2: "Algemeen verkoop en magazijn medewerker",
+                present: "Heden",
+                education: "Opleiding",
+                edu_friesche_poort: "Tweewielerherstel Monteur",
+                edu_friesland_college: "Monteur Sterkstroom Installaties",
+                activity: "Live Activity",
+                download: "Download CV",
+                download_pdf: "Download PDF",
+                expertise: "Expertise",
+                exp_meterkasten: "Meterkasten",
+                exp_bekabeling: "Bekabeling",
+                exp_multimeter: "Multimeter",
+                exp_isolatietester: "Isolatietester",
+                exp_zonnepanelen: "Zonnepanelen",
+                exp_sterkstroom: "Sterkstroom",
+                skills: "Vaardigheden",
+                skill_bash: "Shell/Bash Scripting",
+                languages: "Talen",
+                lang_nl: "Nederlands",
+                lang_de: "Duits",
+                lang_en: "Engels",
+                lang_native: "Moedertaal",
+                lang_basic: "Basis",
+                footer: "© 2026 Bauke Molenaar — Gemaakt met ❤️"
+            },
+            en: {
+                tagline: "Technical professional with a passion for IT and problem-solving",
+                about: "About Me",
+                about_text: "Practical technical professional with extensive experience in electrical systems, solar panels and motorcycles. Hands-on background with technical precision, analytical thinking and a sharp eye for process improvement. Self-taught Shell/Bash, Python and JavaScript/TypeScript with a strong drive to grow as an IT professional.",
+                projects: "Projects",
+                proj_pwnagotchi_plugins: "Python plugins for pwnagotchi — useful extensions for the pwnagotchi AI.",
+                proj_pwnspeaker: "Python plugin for pwnagotchi that uses text-to-speech to speak.",
+                proj_pwnagotchi_cc: "(Remote) control center for pwnagotchi — flashing, configuring and managing.",
+                proj_retropie_bios: "Download and extract BIOS files for RetroPie in the correct directories.",
+                proj_apprise: "Plugin for pwnagotchi that uses Apprise to send notifications.",
+                proj_pwnsorter: "Python plugin for pwnagotchi to sort cracked access points and passwords.",
+                experience: "Work Experience",
+                exp_strowonen_role: "Electrical Installation Technician & General Worker",
+                exp_strowonen_1: "Installation of electrical (high-voltage) systems and solar panels",
+                exp_strowonen_2: "Wood, straw and clay worker",
+                exp_prima_role: "Electrical Installation Technician",
+                exp_prima_1: "Installation of electrical (high-voltage) systems and solar panels",
+                exp_mient_role: "Motorcycle Repair Technician",
+                exp_mient_1: "Motorcycle repair technician",
+                exp_mient_2: "General sales and warehouse worker",
+                present: "Present",
+                education: "Education",
+                edu_friesche_poort: "Motorcycle Repair Technician",
+                edu_friesland_college: "Electrical Installation Technician",
+                activity: "Live Activity",
+                download: "Download Resume",
+                download_pdf: "Download PDF",
+                expertise: "Expertise",
+                exp_meterkasten: "Meter Boxes",
+                exp_bekabeling: "Cabling",
+                exp_multimeter: "Multimeter",
+                exp_isolatietester: "Insulation Tester",
+                exp_zonnepanelen: "Solar Panels",
+                exp_sterkstroom: "High Voltage",
+                skills: "Skills",
+                skill_bash: "Shell/Bash Scripting",
+                languages: "Languages",
+                lang_nl: "Dutch",
+                lang_de: "German",
+                lang_en: "English",
+                lang_native: "Native",
+                lang_basic: "Basic",
+                footer: "© 2026 Bauke Molenaar — Made with ❤️"
+            }
+        };
+
+        let currentLang = 'nl';
+
+        function detectLang() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang.startsWith('en') ? 'en' : 'nl';
+        }
+
+        function applyLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            document.getElementById('lang-label').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            localStorage.setItem('lang', lang);
+        }
+
+        function toggleLang() {
+            const next = currentLang === 'nl' ? 'en' : 'nl';
+            applyLang(next);
+        }
+
         function toggleTheme() {
             const html = document.documentElement;
             const current = html.getAttribute('data-theme');
@@ -638,9 +774,13 @@
             document.querySelector('.theme-toggle').textContent = next === 'light' ? '☀️' : '🌙';
         }
 
-        const saved = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', saved);
-        document.querySelector('.theme-toggle').textContent = saved === 'light' ? '☀️' : '🌙';
+        // Initialize
+        const savedLang = localStorage.getItem('lang') || detectLang();
+        applyLang(savedLang);
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '☀️' : '🌙';
     </script>
 </body>
 </html>
