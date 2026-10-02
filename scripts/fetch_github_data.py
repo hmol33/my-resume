@@ -46,7 +46,7 @@ def fetch_repos():
 def fetch_contributions():
     """Fetch recent contribution activity."""
     # Get events for the user
-    events = run_gh_api('users/itsdarklikehell/events/public')
+    events = run_gh_api('users/hmol33/events/public')
     contributions = []
     for event in events[:20]:
         if event.get('type') in ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent']:
@@ -62,7 +62,7 @@ def fetch_contributions():
 def fetch_user_info():
     """Fetch user profile info."""
     result = subprocess.run(
-        ['gh', 'api', 'users/itsdarklikehell'],
+        ['gh', 'api', 'users/hmol33'],
         capture_output=True, text=True
     )
     if result.returncode == 0:
