@@ -26,7 +26,7 @@ def run_gh_api(endpoint):
 
 def fetch_repos():
     """Fetch all non-fork repos for the user."""
-    repos = run_gh_api('users/itsdarklikehell/repos')
+    repos = run_gh_api('users/hmol33/repos')
     filtered = []
     for r in repos:
         if r.get('fork', False):

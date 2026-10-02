@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bauke Molenaar — CV</title>
+    <title>Hans Molenaar — CV</title>
     <meta name="description" content="Bauke Molenaar — Technisch professional met een passie voor ICT en probleemoplossing">
     <meta property="og:title" content="Bauke Molenaar — CV">
     <meta property="og:description" content="Technisch professional met een passie voor ICT en probleemoplossing">
@@ -636,7 +636,7 @@
         <header class="header">
             <img src="profile.jpg" alt="Bauke Molenaar" class="header-avatar">
             <div class="header-info">
-                <h1>Bauke Molenaar</h1>
+                <h1>Hans Molenaar</h1>
                 <p class="tagline" data-i18n="tagline">Technisch professional met een passie voor ICT en probleemoplossing</p>
             </div>
             <div class="header-contact">
@@ -760,9 +760,9 @@
                 <section class="card">
                     <h2 data-i18n="share">Delen</h2>
                     <div class="share-buttons">
-                        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://itsdarklikehell.github.io/my-resume/" target="_blank">💼 LinkedIn</a>
-                        <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://itsdarklikehell.github.io/my-resume/&text=Bekijk%20mijn%20CV" target="_blank">🐦 Twitter</a>
-                        <a class="share-btn" href="https://wa.me/?text=Bekijk%20mijn%20CV%20https://itsdarklikehell.github.io/my-resume/" target="_blank">💬 WhatsApp</a>
+                        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://hmol33.github.io/my-resume/" target="_blank">💼 LinkedIn</a>
+                        <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://hmol33.github.io/my-resume/&text=Bekijk%20mijn%20CV" target="_blank">🐦 Twitter</a>
+                        <a class="share-btn" href="https://wa.me/?text=Bekijk%20mijn%20CV%20https://hmol33.github.io/my-resume/" target="_blank">💬 WhatsApp</a>
                     </div>
                 </section>
 
@@ -1095,10 +1095,10 @@
                     }
                     const t = translations[currentLang];
                     const profiles = [
-                        { name: 'GitHub', icon: '🐙', url: 'https://github.com/itsdarklikehell', username: 'itsdarklikehell', stats: githubData ? `${githubData.stats.total_repos} repos · ${githubData.stats.total_stars} ⭐` : '' },
-                        { name: 'TryHackMe', icon: '🔒', url: 'https://tryhackme.com/p/SgtStroopwafel', username: 'SgtStroopwafel', stats: data.tryhackme ? `${data.tryhackme.rank} · ${data.tryhackme.points} pts` : '' },
-                        { name: 'Hack The Box', icon: '📦', url: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97', username: 'SgtStroopwafel', stats: data.hackthebox ? `${data.hackthebox.rank} · ${data.hackthebox.points} pts` : '' },
-                        { name: 'CyLab Academy', icon: '🎓', url: 'https://learn.cylabacademy.org/users/SgtStroopwafel', username: 'SgtStroopwafel', stats: data.cylab ? `${data.cylab.rank} · ${data.cylab.points} pts` : '' }
+                        { name: 'GitHub', icon: '🐙', url: 'https://github.com/hmol33', username: 'hmol33', stats: githubData ? `${githubData.stats.total_repos} repos · ${githubData.stats.total_stars} ⭐` : '' },
+                        { name: 'TryHackMe', icon: '🔒', url: 'https://tryhackme.com/p/hmol33', username: 'hmol33', stats: data.tryhackme ? `${data.tryhackme.rank} · ${data.tryhackme.points} pts` : '' },
+                        { name: 'Hack The Box', icon: '📦', url: 'https://profile.hackthebox.com/profile/hmol33', username: 'hmol33', stats: data.hackthebox ? `${data.hackthebox.rank} · ${data.hackthebox.points} pts` : '' },
+                        { name: 'CyLab Academy', icon: '🎓', url: 'https://learn.cylabacademy.org/users/hmol33', username: 'hmol33', stats: data.cylab ? `${data.cylab.rank} · ${data.cylab.points} pts` : '' }
                     ];
                     container.innerHTML = profiles.map(p => `
                         <a href="${p.url}" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
@@ -1263,11 +1263,11 @@
         }
 
         function downloadJSON() {
-            const data = { name: 'Bauke Molenaar', title: 'Technisch professional', email: 'bauke.molenaar@gmail.com', phone: '+31 6 3606 5494', github: 'https://github.com/itsdarklikehell', tryhackme: 'https://tryhackme.com/p/SgtStroopwafel', hackthebox: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97', cylab: 'https://learn.cylabacademy.org/users/SgtStroopwafel', skills: githubData ? githubData.skills : {}, repos: githubData ? githubData.repos : [], generated_at: new Date().toISOString() };
+            const data = { name: 'Hans Molenaar', title: 'Technisch professional', email: 'h.molenaar@freedom.nl', phone: '+31 6 3606 5494', github: 'https://github.com/hmol33', tryhackme: 'https://tryhackme.com/p/hmol33', hackthebox: 'https://profile.hackthebox.com/profile/hmol33', cylab: 'https://learn.cylabacademy.org/users/hmol33', skills: githubData ? githubData.skills : {}, repos: githubData ? githubData.repos : [], generated_at: new Date().toISOString() };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'bauke-molenaar-cv.json'; a.click();
+            a.href = url; a.download = 'hans-molenaar-cv.json'; a.click();
             URL.revokeObjectURL(url);
         }
 
@@ -1277,7 +1277,7 @@
             const name = form.name.value, email = form.email.value, message = form.message.value;
             const subject = encodeURIComponent('CV aanvraag van ' + name);
             const body = encodeURIComponent('Naam: ' + name + '\nE-mail: ' + email + '\n\nBericht:\n' + message);
-            window.location.href = 'mailto:bauke.molenaar@gmail.com?subject=' + subject + '&body=' + body;
+            window.location.href = 'mailto:h.molenaar@freedom.nl?subject=' + subject + '&body=' + body;
         }
 
         function renderDonut() {
@@ -1304,9 +1304,6 @@
             chart.innerHTML = svg + '<div class="donut-center"><div class="donut-total">' + total + '</div><div class="donut-label">' + (currentLang === 'nl' ? 'Repos' : 'Repos') + '</div></div>';
             legend.innerHTML = Object.entries(skills).map(([lang, data]) => '<div class="legend-item"><div class="legend-color" style="background: ' + (colors[lang] || '#9ca3b4') + ';"></div><span class="legend-label">' + (langNames[lang] || lang) + '</span><span class="legend-value">' + data.repos + ' repos (' + data.percentage + '%)</span></div>').join('');
         }
-
-        function downloadJSON() {
-            const data = { name: 'Bauke Molenaar', title: 'Technisch professional', email: 'bauke.molenaar@gmail.com', phone: '+31 6 3606 5494', github: 'https://github.com/itsdarklikehell', tryhackme: 'https://tryhackme.com/p/SgtStroopwafel', hackthebox: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97', cylab: 'https://learn.cylabacademy.org/users/SgtStroopwafel', skills: githubData ? githubData.skills : {}, repos: githubData ? githubData.repos : [], generated_at: new Date().toISOString() };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');

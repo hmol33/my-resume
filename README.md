@@ -1,4 +1,4 @@
-# My Resume — Digitale CV van Bauke Molenaar
+# My Resume — Digitale CV van Hans Molenaar
 
 Een moderne, tweetalige (NL/EN) digitale resume met live GitHub data, gebouwd als statische site.
 
@@ -6,13 +6,13 @@ Een moderne, tweetalige (NL/EN) digitale resume met live GitHub data, gebouwd al
 
 De ontwikkelhistorie van dit project in een film:
 
-<video src="https://raw.githubusercontent.com/itsdarklikehell/my-resume/main/gource.mp4" controls width="100%"></video>
+<video src="https://raw.githubusercontent.com/hmol33/my-resume/main/gource.mp4" controls width="100%"></video>
 
 *De video wordt automatisch gegenereerd door de [Gource workflow](.github/workflows/gource.yml) bij elke push.*
 
 ## 🚀 Live Site
 
-**https://itsdarklikehell.github.io/my-resume/**
+**https://hmol33.github.io/my-resume/**
 
 ## ✨ Features
 
@@ -57,4 +57,4 @@ De GitHub data wordt dagelijks om 06:00 UTC automatisch bijgewerkt door de `upda
 
 ## 📝 License
 
-© 2026 Bauke Molenaar
+© 2026 Hans Molenaar
