@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bauke Molenaar — CV</title>
+    <meta name="description" content="Bauke Molenaar — Technisch professional met een passie voor ICT en probleemoplossing">
+    <meta property="og:title" content="Bauke Molenaar — CV">
+    <meta property="og:description" content="Technisch professional met een passie voor ICT en probleemoplossing">
+    <meta property="og:image" content="https://itsdarklikehell.github.io/my-resume/profile.jpg">
+    <meta property="og:url" content="https://itsdarklikehell.github.io/my-resume/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bauke Molenaar — CV">
+    <meta name="twitter:description" content="Technisch professional met een passie voor ICT en probleemoplossing">
+    <meta name="twitter:image" content="https://itsdarklikehell.github.io/my-resume/profile.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -457,11 +467,165 @@
             margin-bottom: 1rem;
         }
 
+        /* Donut chart */
+        .donut-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .donut-chart {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+        .donut-chart svg {
+            transform: rotate(-90deg);
+        }
+        .donut-chart .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .donut-chart .donut-center .donut-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .donut-chart .donut-center .donut-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .donut-legend .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .donut-legend .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .donut-legend .legend-label {
+            flex: 1;
+        }
+        .donut-legend .legend-value {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Timeline animation */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form button {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 140, 255, 0.3);
+        }
+
+        /* Share buttons */
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: var(--text);
+            font-size: 0.85rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .share-btn:hover {
+            background: var(--surface);
+            border-color: var(--accent);
+        }
+
+        /* Print-friendly */
         @media print {
             body { background: #fff; color: #000; }
             .card, .header { border-color: #ddd; background: #fff; }
             .header-avatar { background: #333; }
-            .theme-toggle, .lang-toggle { display: none; }
+            .theme-toggle, .lang-toggle, .share-buttons, .contact-form { display: none; }
+            .timeline-item { opacity: 1; transform: none; animation: none; }
+            .donut-chart { display: none; }
+            .donut-legend { display: flex; }
+        }
+
+        /* Auto theme */
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --bg: #f5f6fa;
+                --surface: #ffffff;
+                --surface2: #e8eaf0;
+                --border: #d1d5e0;
+                --text: #1a1d27;
+                --text-muted: #5a6070;
+            }
         }
     </style>
 </head>
@@ -485,12 +649,15 @@
             <div class="main-col">
                 <section class="card">
                     <h2 data-i18n="about">Over Mij</h2>
-                    <p class="about-text" data-i18n="about_text">
-                        Praktisch ingestelde technisch professional met ruime ervaring in elektrische systemen, 
-                        zonnepanelen en tweewielers. Hands-on achtergrond met technische precisie, analytisch 
-                        denkvermogen en een scherp oog voor procesverbetering. Zelfstandig Shell/Bash, Python 
-                        en JavaScript/TypeScript aangeleerd met een sterke drive om te groeien als ICT-professional.
-                    </p>
+                    <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+                        <img src="profile.jpg" alt="Bauke Molenaar" style="width: 150px; height: 150px; border-radius: 12px; object-fit: cover; border: 3px solid var(--accent); flex-shrink: 0;">
+                        <p class="about-text" data-i18n="about_text" style="flex: 1; min-width: 250px;">
+                            Praktisch ingestelde technisch professional met ruime ervaring in elektrische systemen, 
+                            zonnepanelen en tweewielers. Hands-on achtergrond met technische precisie, analytisch 
+                            denkvermogen en een scherp oog voor procesverbetering. Zelfstandig Shell/Bash, Python 
+                            en JavaScript/TypeScript aangeleerd met een sterke drive om te groeien als ICT-professional.
+                        </p>
+                    </div>
                 </section>
 
                 <section class="card">
@@ -585,6 +752,28 @@
                     <a href="https://canva.link/tmyeeati5zwh0e2" class="download-btn" target="_blank">
                         📄 <span data-i18n="download_pdf">Download PDF</span>
                     </a>
+                    <button class="download-btn" style="margin-top: 0.5rem; background: var(--surface2); color: var(--text); border: 1px solid var(--border);" onclick="downloadJSON()">
+                        📋 <span data-i18n="download_json">Download JSON</span>
+                    </button>
+                </section>
+
+                <section class="card">
+                    <h2 data-i18n="share">Delen</h2>
+                    <div class="share-buttons">
+                        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://itsdarklikehell.github.io/my-resume/" target="_blank">💼 LinkedIn</a>
+                        <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://itsdarklikehell.github.io/my-resume/&text=Bekijk%20mijn%20CV" target="_blank">🐦 Twitter</a>
+                        <a class="share-btn" href="https://wa.me/?text=Bekijk%20mijn%20CV%20https://itsdarklikehell.github.io/my-resume/" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2 data-i18n="contact">Contact</h2>
+                    <form class="contact-form" onsubmit="sendEmail(event)">
+                        <input type="text" name="name" placeholder="Naam" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <textarea name="message" placeholder="Bericht" required></textarea>
+                        <button type="submit">📨 <span data-i18n="send">Verstuur</span></button>
+                    </form>
                 </section>
 
                 <section class="card">
@@ -602,6 +791,15 @@
 
                 <section class="card">
                     <h2 data-i18n="skills">Vaardigheden</h2>
+                    <div class="donut-container">
+                        <div class="donut-chart" id="donut-chart">
+                            <div class="donut-center">
+                                <div class="donut-total" id="donut-total">-</div>
+                                <div class="donut-label" data-i18n="stat_repos">Repos</div>
+                            </div>
+                        </div>
+                        <div class="donut-legend" id="donut-legend"></div>
+                    </div>
                     <div id="skills-container">
                         <p class="about-text">Loading skills...</p>
                     </div>
@@ -678,7 +876,11 @@
                 push: "Push",
                 pull_request: "Pull Request",
                 issue: "Issue",
-                create: "Aangemaakt"
+                create: "Aangemaakt",
+                share: "Delen",
+                contact: "Contact",
+                send: "Verstuur",
+                download_json: "Download JSON"
             },
             en: {
                 tagline: "Technical professional with a passion for IT and problem-solving",
@@ -726,7 +928,11 @@
                 push: "Push",
                 pull_request: "Pull Request",
                 issue: "Issue",
-                create: "Created"
+                create: "Created",
+                share: "Share",
+                contact: "Contact",
+                send: "Send",
+                download_json: "Download JSON"
             }
         };
 
@@ -911,6 +1117,7 @@
         function renderAll() {
             renderProjects();
             renderSkills();
+            renderDonut();
             renderStats();
             renderContributions();
             renderProfiles();
@@ -938,7 +1145,184 @@
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '☀️' : '🌙';
 
+        // Donut chart
+        function renderDonut() {
+            if (!githubData || !githubData.skills) return;
+            const skills = githubData.skills;
+            const total = Object.values(skills).reduce((sum, s) => sum + s.repos, 0);
+            const colors = {
+                'Shell': '#4ecdc4',
+                'Python': '#3776ab',
+                'JavaScript': '#f7df1e',
+                'TypeScript': '#3178c6',
+                'HTML': '#e34c26',
+                'CSS': '#264de4'
+            };
+            const langNames = {
+                'Shell': 'Shell/Bash',
+                'Python': 'Python',
+                'JavaScript': 'JavaScript',
+                'TypeScript': 'TypeScript',
+                'HTML': 'HTML',
+                'CSS': 'CSS'
+            };
+
+            const chart = document.getElementById('donut-chart');
+            const legend = document.getElementById('donut-legend');
+            if (!chart || !legend) return;
+
+            // Create SVG donut
+            const size = 180;
+            const radius = 70;
+            const strokeWidth = 25;
+            const circumference = 2 * Math.PI * radius;
+            let offset = 0;
+
+            let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+            for (const [lang, data] of Object.entries(skills)) {
+                const percentage = data.repos / total;
+                const dashLength = percentage * circumference;
+                const color = colors[lang] || '#9ca3b4';
+                svg += `<circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-dasharray="${dashLength} ${circumference - dashLength}" stroke-dashoffset="${-offset}" />`;
+                offset += dashLength;
+            }
+            svg += '</svg>';
+            chart.innerHTML = svg + '<div class="donut-center"><div class="donut-total">' + total + '</div><div class="donut-label">' + (currentLang === 'nl' ? 'Repos' : 'Repos') + '</div></div>';
+
+            // Legend
+            legend.innerHTML = Object.entries(skills).map(([lang, data]) => `
+                <div class="legend-item">
+                    <div class="legend-color" style="background: ${colors[lang] || '#9ca3b4'};"></div>
+                    <span class="legend-label">${langNames[lang] || lang}</span>
+                    <span class="legend-value">${data.repos} repos (${data.percentage}%)</span>
+                </div>
+            `).join('');
+        }
+
+        // Download JSON
+        function downloadJSON() {
+            const data = {
+                name: 'Bauke Molenaar',
+                title: 'Technisch professional',
+                email: 'bauke.molenaar@gmail.com',
+                phone: '+31 6 3606 5494',
+                github: 'https://github.com/itsdarklikehell',
+                tryhackme: 'https://tryhackme.com/p/SgtStroopwafel',
+                hackthebox: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97',
+                cylab: 'https://learn.cylabacademy.org/users/SgtStroopwafel',
+                skills: githubData ? githubData.skills : {},
+                repos: githubData ? githubData.repos : [],
+                generated_at: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'bauke-molenaar-cv.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Send email
+        function sendEmail(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            const message = form.message.value;
+            const subject = encodeURIComponent(`CV aanvraag van ${name}`);
+            const body = encodeURIComponent(`Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${message}`);
+            window.location.href = `mailto:bauke.molenaar@gmail.com?subject=${subject}&body=${body}`;
+        }
+
         // Load live data
+        // Donut chart
+        function renderDonut() {
+            if (!githubData || !githubData.skills) return;
+            const skills = githubData.skills;
+            const total = Object.values(skills).reduce((sum, s) => sum + s.repos, 0);
+            const colors = { 'Shell': '#4ecdc4', 'Python': '#3776ab', 'JavaScript': '#f7df1e', 'TypeScript': '#3178c6', 'HTML': '#e34c26', 'CSS': '#264de4' };
+            const langNames = { 'Shell': 'Shell/Bash', 'Python': 'Python', 'JavaScript': 'JavaScript', 'TypeScript': 'TypeScript', 'HTML': 'HTML', 'CSS': 'CSS' };
+            const chart = document.getElementById('donut-chart');
+            const legend = document.getElementById('donut-legend');
+            if (!chart || !legend) return;
+            const size = 180, radius = 70, strokeWidth = 25;
+            const circumference = 2 * Math.PI * radius;
+            let offset = 0;
+            let svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '">';
+            for (const [lang, data] of Object.entries(skills)) {
+                const percentage = data.repos / total;
+                const dashLength = percentage * circumference;
+                const color = colors[lang] || '#9ca3b4';
+                svg += '<circle cx="' + size/2 + '" cy="' + size/2 + '" r="' + radius + '" fill="none" stroke="' + color + '" stroke-width="' + strokeWidth + '" stroke-dasharray="' + dashLength + ' ' + (circumference - dashLength) + '" stroke-dashoffset="' + (-offset) + '" />';
+                offset += dashLength;
+            }
+            svg += '</svg>';
+            chart.innerHTML = svg + '<div class="donut-center"><div class="donut-total">' + total + '</div><div class="donut-label">' + (currentLang === 'nl' ? 'Repos' : 'Repos') + '</div></div>';
+            legend.innerHTML = Object.entries(skills).map(([lang, data]) => '<div class="legend-item"><div class="legend-color" style="background: ' + (colors[lang] || '#9ca3b4') + ';"></div><span class="legend-label">' + (langNames[lang] || lang) + '</span><span class="legend-value">' + data.repos + ' repos (' + data.percentage + '%)</span></div>').join('');
+        }
+
+        function downloadJSON() {
+            const data = { name: 'Bauke Molenaar', title: 'Technisch professional', email: 'bauke.molenaar@gmail.com', phone: '+31 6 3606 5494', github: 'https://github.com/itsdarklikehell', tryhackme: 'https://tryhackme.com/p/SgtStroopwafel', hackthebox: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97', cylab: 'https://learn.cylabacademy.org/users/SgtStroopwafel', skills: githubData ? githubData.skills : {}, repos: githubData ? githubData.repos : [], generated_at: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'bauke-molenaar-cv.json'; a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function sendEmail(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.name.value, email = form.email.value, message = form.message.value;
+            const subject = encodeURIComponent('CV aanvraag van ' + name);
+            const body = encodeURIComponent('Naam: ' + name + '\nE-mail: ' + email + '\n\nBericht:\n' + message);
+            window.location.href = 'mailto:bauke.molenaar@gmail.com?subject=' + subject + '&body=' + body;
+        }
+
+        function renderDonut() {
+            if (!githubData || !githubData.skills) return;
+            const skills = githubData.skills;
+            const total = Object.values(skills).reduce((sum, s) => sum + s.repos, 0);
+            const colors = { 'Shell': '#4ecdc4', 'Python': '#3776ab', 'JavaScript': '#f7df1e', 'TypeScript': '#3178c6', 'HTML': '#e34c26', 'CSS': '#264de4' };
+            const langNames = { 'Shell': 'Shell/Bash', 'Python': 'Python', 'JavaScript': 'JavaScript', 'TypeScript': 'TypeScript', 'HTML': 'HTML', 'CSS': 'CSS' };
+            const chart = document.getElementById('donut-chart');
+            const legend = document.getElementById('donut-legend');
+            if (!chart || !legend) return;
+            const size = 180, radius = 70, strokeWidth = 25;
+            const circumference = 2 * Math.PI * radius;
+            let offset = 0;
+            let svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + ' ' + size + '">';
+            for (const [lang, data] of Object.entries(skills)) {
+                const percentage = data.repos / total;
+                const dashLength = percentage * circumference;
+                const color = colors[lang] || '#9ca3b4';
+                svg += '<circle cx="' + size/2 + '" cy="' + size/2 + '" r="' + radius + '" fill="none" stroke="' + color + '" stroke-width="' + strokeWidth + '" stroke-dasharray="' + dashLength + ' ' + (circumference - dashLength) + '" stroke-dashoffset="' + (-offset) + '" />';
+                offset += dashLength;
+            }
+            svg += '</svg>';
+            chart.innerHTML = svg + '<div class="donut-center"><div class="donut-total">' + total + '</div><div class="donut-label">' + (currentLang === 'nl' ? 'Repos' : 'Repos') + '</div></div>';
+            legend.innerHTML = Object.entries(skills).map(([lang, data]) => '<div class="legend-item"><div class="legend-color" style="background: ' + (colors[lang] || '#9ca3b4') + ';"></div><span class="legend-label">' + (langNames[lang] || lang) + '</span><span class="legend-value">' + data.repos + ' repos (' + data.percentage + '%)</span></div>').join('');
+        }
+
+        function downloadJSON() {
+            const data = { name: 'Bauke Molenaar', title: 'Technisch professional', email: 'bauke.molenaar@gmail.com', phone: '+31 6 3606 5494', github: 'https://github.com/itsdarklikehell', tryhackme: 'https://tryhackme.com/p/SgtStroopwafel', hackthebox: 'https://profile.hackthebox.com/profile/01a0f22b-f959-73b9-925c-c2e2e350db97', cylab: 'https://learn.cylabacademy.org/users/SgtStroopwafel', skills: githubData ? githubData.skills : {}, repos: githubData ? githubData.repos : [], generated_at: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'bauke-molenaar-cv.json'; a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function sendEmail(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.name.value, email = form.email.value, message = form.message.value;
+            const subject = encodeURIComponent('CV aanvraag van ' + name);
+            const body = encodeURIComponent('Naam: ' + name + '\nE-mail: ' + email + '\n\nBericht:\n' + message);
+            window.location.href = 'mailto:bauke.molenaar@gmail.com?subject=' + subject + '&body=' + body;
+        }
+
         loadGitHubData();
     </script>
 </body>
