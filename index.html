@@ -381,11 +381,76 @@
 
         .activity-card .activity-link:hover { text-decoration: underline; }
 
+        .contribution-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .contribution-item:last-child { border-bottom: none; }
+
+        .contribution-item .contrib-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contribution-item .contrib-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .contribution-item .contrib-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contribution-item .contrib-text a:hover { text-decoration: underline; }
+
+        .contribution-item .contrib-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--surface2);
+            border-radius: 8px;
+        }
+
+        .stat-item .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         .footer {
             text-align: center;
             padding: 2rem 0 1rem;
             color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         @media print {
@@ -426,74 +491,8 @@
 
                 <section class="card">
                     <h2 data-i18n="projects">Projecten</h2>
-                    
-                    <div class="project-item">
-                        <div class="project-title">🐍 pwnagotchi-plugins <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 231</span></div>
-                        <div class="project-desc" data-i18n="proj_pwnagotchi_plugins">
-                            Python plugins voor pwnagotchi — handige uitbreidingen voor de pwnagotchi AI.
-                        </div>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Pwnagotchi</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">🔊 pwnspeaker <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 20</span></div>
-                        <div class="project-desc" data-i18n="proj_pwnspeaker">
-                            Python plugin voor pwnagotchi die tekst-naar-spraak gebruikt om te spreken.
-                        </div>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>TTS</span>
-                            <span>Pwnagotchi</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">🎮 pwnagotchi-control-center <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 12</span></div>
-                        <div class="project-desc" data-i18n="proj_pwnagotchi_cc">
-                            (Remote) control center voor pwnagotchi — flashen, configureren en beheren.
-                        </div>
-                        <div class="project-tech">
-                            <span>Shell</span>
-                            <span>Raspberry Pi</span>
-                            <span>Bluetooth</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">📦 RetroPie-Bios-Files <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 8</span></div>
-                        <div class="project-desc" data-i18n="proj_retropie_bios">
-                            Download en extract BIOS-files voor RetroPie in de juiste directories.
-                        </div>
-                        <div class="project-tech">
-                            <span>Shell</span>
-                            <span>RetroPie</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">🔔 apprise-notify <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 3</span></div>
-                        <div class="project-desc" data-i18n="proj_apprise">
-                            Plugin voor pwnagotchi die Apprise gebruikt om notificaties te sturen.
-                        </div>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Apprise</span>
-                            <span>Pwnagotchi</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">🗂️ pwnsorter <span style="color: var(--accent2); font-size: 0.8rem;">⭐ 2</span></div>
-                        <div class="project-desc" data-i18n="proj_pwnsorter">
-                            Python plugin voor pwnagotchi om gekraakte access points en wachtwoorden te sorteren.
-                        </div>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Pwnagotchi</span>
-                        </div>
+                    <div id="projects-container">
+                        <p class="about-text">Loading projects...</p>
                     </div>
                 </section>
 
@@ -548,6 +547,28 @@
 
                 <section class="card">
                     <h2 data-i18n="activity">Live Activity</h2>
+                    <div class="stats-grid" id="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-value" id="stat-repos">-</div>
+                            <div class="stat-label" data-i18n="stat_repos">Repos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="stat-stars">-</div>
+                            <div class="stat-label" data-i18n="stat_stars">Stars</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="stat-langs">-</div>
+                            <div class="stat-label" data-i18n="stat_langs">Languages</div>
+                        </div>
+                    </div>
+                    <div id="contributions-container">
+                        <p class="about-text">Loading activity...</p>
+                    </div>
+                    <div class="last-updated" id="last-updated"></div>
+                </section>
+
+                <section class="card">
+                    <h2 data-i18n="profiles">Profielen</h2>
                     <div class="activity-grid">
                         <a href="https://github.com/itsdarklikehell" target="_blank" class="activity-card" style="text-decoration: none; color: inherit;">
                             <div class="activity-icon">🐙</div>
@@ -596,33 +617,8 @@
 
                 <section class="card">
                     <h2 data-i18n="skills">Vaardigheden</h2>
-                    <div class="skill-bar">
-                        <div class="skill-header">
-                            <span data-i18n="skill_bash">Shell/Bash Scripting</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="bar"><div class="bar-fill bash"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-header">
-                            <span>Python</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="bar"><div class="bar-fill python"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-header">
-                            <span>JavaScript/TypeScript</span>
-                            <span>45%</span>
-                        </div>
-                        <div class="bar"><div class="bar-fill js"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-header">
-                            <span>HTML/CSS</span>
-                            <span>40%</span>
-                        </div>
-                        <div class="bar"><div class="bar-fill html"></div></div>
+                    <div id="skills-container">
+                        <p class="about-text">Loading skills...</p>
                     </div>
                 </section>
 
@@ -656,12 +652,6 @@
                 about: "Over Mij",
                 about_text: "Praktisch ingestelde technisch professional met ruime ervaring in elektrische systemen, zonnepanelen en tweewielers. Hands-on achtergrond met technische precisie, analytisch denkvermogen en een scherp oog voor procesverbetering. Zelfstandig Shell/Bash, Python en JavaScript/TypeScript aangeleerd met een sterke drive om te groeien als ICT-professional.",
                 projects: "Projecten",
-                proj_pwnagotchi_plugins: "Python plugins voor pwnagotchi — handige uitbreidingen voor de pwnagotchi AI.",
-                proj_pwnspeaker: "Python plugin voor pwnagotchi die tekst-naar-spraak gebruikt om te spreken.",
-                proj_pwnagotchi_cc: "(Remote) control center voor pwnagotchi — flashen, configureren en beheren.",
-                proj_retropie_bios: "Download en extract BIOS-files voor RetroPie in de juiste directories.",
-                proj_apprise: "Plugin voor pwnagotchi die Apprise gebruikt om notificaties te sturen.",
-                proj_pwnsorter: "Python plugin voor pwnagotchi om gekraakte access points en wachtwoorden te sorteren.",
                 experience: "Werkervaring",
                 exp_strowonen_role: "Monteur Sterkstroom Installaties & Algemeen Medewerker",
                 exp_strowonen_1: "Montage van elektrische (sterkstroom) installaties en zonnepanelen",
@@ -676,6 +666,10 @@
                 edu_friesche_poort: "Tweewielerherstel Monteur",
                 edu_friesland_college: "Monteur Sterkstroom Installaties",
                 activity: "Live Activity",
+                stat_repos: "Repos",
+                stat_stars: "Stars",
+                stat_langs: "Talen",
+                profiles: "Profielen",
                 download: "Download CV",
                 download_pdf: "Download PDF",
                 expertise: "Expertise",
@@ -686,26 +680,26 @@
                 exp_zonnepanelen: "Zonnepanelen",
                 exp_sterkstroom: "Sterkstroom",
                 skills: "Vaardigheden",
-                skill_bash: "Shell/Bash Scripting",
                 languages: "Talen",
                 lang_nl: "Nederlands",
                 lang_de: "Duits",
                 lang_en: "Engels",
                 lang_native: "Moedertaal",
                 lang_basic: "Basis",
-                footer: "© 2026 Bauke Molenaar — Gemaakt met ❤️"
+                footer: "© 2026 Bauke Molenaar — Gemaakt met ❤️",
+                last_updated: "Laatst bijgewerkt",
+                contributed_to: "Bijgedragen aan",
+                other_repositories: "andere repositories",
+                push: "Push",
+                pull_request: "Pull Request",
+                issue: "Issue",
+                create: "Aangemaakt"
             },
             en: {
                 tagline: "Technical professional with a passion for IT and problem-solving",
                 about: "About Me",
                 about_text: "Practical technical professional with extensive experience in electrical systems, solar panels and motorcycles. Hands-on background with technical precision, analytical thinking and a sharp eye for process improvement. Self-taught Shell/Bash, Python and JavaScript/TypeScript with a strong drive to grow as an IT professional.",
                 projects: "Projects",
-                proj_pwnagotchi_plugins: "Python plugins for pwnagotchi — useful extensions for the pwnagotchi AI.",
-                proj_pwnspeaker: "Python plugin for pwnagotchi that uses text-to-speech to speak.",
-                proj_pwnagotchi_cc: "(Remote) control center for pwnagotchi — flashing, configuring and managing.",
-                proj_retropie_bios: "Download and extract BIOS files for RetroPie in the correct directories.",
-                proj_apprise: "Plugin for pwnagotchi that uses Apprise to send notifications.",
-                proj_pwnsorter: "Python plugin for pwnagotchi to sort cracked access points and passwords.",
                 experience: "Work Experience",
                 exp_strowonen_role: "Electrical Installation Technician & General Worker",
                 exp_strowonen_1: "Installation of electrical (high-voltage) systems and solar panels",
@@ -720,6 +714,10 @@
                 edu_friesche_poort: "Motorcycle Repair Technician",
                 edu_friesland_college: "Electrical Installation Technician",
                 activity: "Live Activity",
+                stat_repos: "Repos",
+                stat_stars: "Stars",
+                stat_langs: "Languages",
+                profiles: "Profiles",
                 download: "Download Resume",
                 download_pdf: "Download PDF",
                 expertise: "Expertise",
@@ -730,18 +728,25 @@
                 exp_zonnepanelen: "Solar Panels",
                 exp_sterkstroom: "High Voltage",
                 skills: "Skills",
-                skill_bash: "Shell/Bash Scripting",
                 languages: "Languages",
                 lang_nl: "Dutch",
                 lang_de: "German",
                 lang_en: "English",
                 lang_native: "Native",
                 lang_basic: "Basic",
-                footer: "© 2026 Bauke Molenaar — Made with ❤️"
+                footer: "© 2026 Bauke Molenaar — Made with ❤️",
+                last_updated: "Last updated",
+                contributed_to: "Contributed to",
+                other_repositories: "other repositories",
+                push: "Push",
+                pull_request: "Pull Request",
+                issue: "Issue",
+                create: "Created"
             }
         };
 
         let currentLang = 'nl';
+        let githubData = null;
 
         function detectLang() {
             const browserLang = navigator.language || navigator.userLanguage;
@@ -758,6 +763,7 @@
             document.getElementById('lang-label').textContent = lang.toUpperCase();
             document.documentElement.lang = lang;
             localStorage.setItem('lang', lang);
+            if (githubData) renderAll();
         }
 
         function toggleLang() {
@@ -774,6 +780,138 @@
             document.querySelector('.theme-toggle').textContent = next === 'light' ? '☀️' : '🌙';
         }
 
+        function getLangColor(lang) {
+            const colors = {
+                'Shell': '#4ecdc4',
+                'Python': '#3776ab',
+                'JavaScript': '#f7df1e',
+                'TypeScript': '#3178c6',
+                'HTML': '#e34c26',
+                'CSS': '#264de4',
+                'Unknown': '#9ca3b4'
+            };
+            return colors[lang] || '#9ca3b4';
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            if (!githubData || !githubData.repos) {
+                container.innerHTML = '<p class="about-text">No data available</p>';
+                return;
+            }
+
+            const topRepos = githubData.repos.slice(0, 6);
+            container.innerHTML = topRepos.map(repo => `
+                <div class="project-item">
+                    <div class="project-title">
+                        <a href="${repo.url}" target="_blank" style="color: inherit; text-decoration: none;">${repo.name}</a>
+                        <span style="color: var(--accent2); font-size: 0.8rem;">⭐ ${repo.stars}</span>
+                    </div>
+                    <div class="project-desc">${repo.description || 'No description'}</div>
+                    <div class="project-tech">
+                        ${repo.language !== 'Unknown' ? `<span>${repo.language}</span>` : ''}
+                        ${repo.topics.slice(0, 3).map(t => `<span>${t}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            if (!githubData || !githubData.skills) {
+                container.innerHTML = '<p class="about-text">No data available</p>';
+                return;
+            }
+
+            const skills = githubData.skills;
+            const langNames = {
+                'Shell': 'Shell/Bash',
+                'Python': 'Python',
+                'JavaScript': 'JavaScript',
+                'TypeScript': 'TypeScript',
+                'HTML': 'HTML',
+                'CSS': 'CSS'
+            };
+
+            container.innerHTML = Object.entries(skills).map(([lang, data]) => `
+                <div class="skill-bar">
+                    <div class="skill-header">
+                        <span>${langNames[lang] || lang}</span>
+                        <span>${data.percentage}%</span>
+                    </div>
+                    <div class="bar"><div class="bar-fill" style="width: ${data.percentage}%; background: ${getLangColor(lang)};"></div></div>
+                </div>
+            `).join('');
+        }
+
+        function renderStats() {
+            if (!githubData || !githubData.stats) return;
+            document.getElementById('stat-repos').textContent = githubData.stats.total_repos;
+            document.getElementById('stat-stars').textContent = githubData.stats.total_stars;
+            document.getElementById('stat-langs').textContent = githubData.stats.languages;
+        }
+
+        function renderContributions() {
+            const container = document.getElementById('contributions-container');
+            if (!githubData || !githubData.contributions) {
+                container.innerHTML = '<p class="about-text">No data available</p>';
+                return;
+            }
+
+            const t = translations[currentLang];
+            const typeIcons = {
+                'PushEvent': '🔨',
+                'PullRequestEvent': '🔀',
+                'IssuesEvent': '🐛',
+                'CreateEvent': '✨'
+            };
+            const typeLabels = {
+                'PushEvent': t.push,
+                'PullRequestEvent': t.pull_request,
+                'IssuesEvent': t.issue,
+                'CreateEvent': t.create
+            };
+
+            const recent = githubData.contributions.slice(0, 8);
+            container.innerHTML = recent.map(c => `
+                <div class="contribution-item">
+                    <div class="contrib-icon">${typeIcons[c.type] || '📌'}</div>
+                    <div class="contrib-text">
+                        ${typeLabels[c.type] || c.type} — <a href="${c.url}" target="_blank">${c.repo}</a>
+                    </div>
+                    <div class="contrib-date">${new Date(c.date).toLocaleDateString(currentLang === 'nl' ? 'nl-NL' : 'en-US')}</div>
+                </div>
+            `).join('');
+
+            // Last updated
+            if (githubData.generated_at) {
+                const date = new Date(githubData.generated_at);
+                document.getElementById('last-updated').textContent = 
+                    `${t.last_updated}: ${date.toLocaleDateString(currentLang === 'nl' ? 'nl-NL' : 'en-US')} ${date.toLocaleTimeString(currentLang === 'nl' ? 'nl-NL' : 'en-US')}`;
+            }
+        }
+
+        function renderAll() {
+            renderProjects();
+            renderSkills();
+            renderStats();
+            renderContributions();
+        }
+
+        async function loadGitHubData() {
+            try {
+                const response = await fetch('github-data.json');
+                if (!response.ok) throw new Error('Failed to load');
+                githubData = await response.json();
+                renderAll();
+            } catch (e) {
+                console.error('Failed to load GitHub data:', e);
+                document.getElementById('projects-container').innerHTML = '<p class="about-text">Unable to load live data</p>';
+                document.getElementById('skills-container').innerHTML = '<p class="about-text">Unable to load live data</p>';
+                document.getElementById('contributions-container').innerHTML = '<p class="about-text">Unable to load live data</p>';
+            }
+        }
+
         // Initialize
         const savedLang = localStorage.getItem('lang') || detectLang();
         applyLang(savedLang);
@@ -781,6 +919,9 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+        // Load live data
+        loadGitHubData();
     </script>
 </body>
 </html>
